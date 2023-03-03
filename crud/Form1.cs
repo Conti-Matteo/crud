@@ -20,13 +20,12 @@ namespace crud
             prodotto = new string[100];
             dim = 0;
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
@@ -36,16 +35,9 @@ namespace crud
             aggiunta(prodotto, ref dim, TextB1.Text, TextB2.Text);
             stampa(prodotto, ref dim, TextB1.Text, TextB2.Text);
         }
-        //funzioni di servizio
-        public void aggiunta(string[] prodoto, ref int dim, string nome, string prezzo)
+        private void button2_Click(object sender, EventArgs e)
         {
-            prodotto[dim] = nome;
-            dim++;
-        }
-        public void stampa(string[] prodotto, ref int dim, string nome, string prezzo)
-        {
-            this.listView1.Items.Add(nome +  " €" + prezzo);
-
+            modifica(prodotto, ref dim, TextB3.Text);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -54,6 +46,34 @@ namespace crud
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //funzioni di servizio
+        public void aggiunta(string[] prodoto, ref int dim, string nome, string prezzo)
+        {
+            prodotto[dim] = nome;
+            dim++;
+            
+        }
+        public void stampa(string[] prodotto, ref int dim, string nome, string prezzo)
+        {
+            this.listView1.Items.Add(nome + " €" + prezzo);
+
+        }
+        public void modifica(string[] prodotto, ref int dim, string nome, string prezzo)
+        {
+            for(int i = 0; i < prodotto.Length; i++)
+            {
+                if(prodotto[i]==TextB3.Text)
+                {
+                    Console.WriteLine("Prodotto trovato");
+                }
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
