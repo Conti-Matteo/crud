@@ -12,12 +12,17 @@ namespace crud
 {
     public partial class Form1 : Form
     {
-        public string[] prodotto;
         public int dim;
+        public struct struttura
+        {
+            public string[] prodotto;
+            public string[] prezzo;
+        }
+        public static struttura Struttura = new struttura();
         public Form1()
         {
             InitializeComponent();
-            prodotto = new string[100];
+            Struttura.prodotto = new string[100];
             dim = 0;
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -32,12 +37,23 @@ namespace crud
 
         private void button1_Click(object sender, EventArgs e)
         {
-            aggiunta(prodotto, ref dim, TextB1.Text, TextB2.Text);
-            stampa(prodotto, ref dim, TextB1.Text, TextB2.Text);
+            aggiunta(TextB1.Text, TextB2.Text);
+            stampa();
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            modifica(prodotto, ref dim, TextB3.Text);
+            int posizione = ricerca(TextB3.Text);
+            if (posizione != -1)
+            {
+                modifica(TextB4.Text, textB5.Text, posizione);
+                stampa();
+                MessageBox.Show("il prodotto è stato trovato");
+            }
+            else
+            {
+                MessageBox.Show("il prodotto non è stato trovato");
+            }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,33 +65,41 @@ namespace crud
         {
 
         }
-
-        //funzioni di servizio
-        public void aggiunta(string[] prodoto, ref int dim, string nome, string prezzo)
-        {
-            prodotto[dim] = nome;
-            dim++;
-            
-        }
-        public void stampa(string[] prodotto, ref int dim, string nome, string prezzo)
-        {
-            this.listView1.Items.Add(nome + " €" + prezzo);
-
-        }
-        public void modifica(string[] prodotto, ref int dim, string nome, string prezzo)
-        {
-            for(int i = 0; i < prodotto.Length; i++)
-            {
-                if(prodotto[i]==TextB3.Text)
-                {
-                    Console.WriteLine("Prodotto trovato");
-                }
-            }
-        }
-
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //funzioni di servizio
+        public void aggiunta(string nome, string valore)
+        {
+            Struttura.prodotto[dim] = nome;
+            Struttura.prezzo[dim] = valore;
+            dim++;
+        }
+        public void stampa()
+        {
+            this.listView1.Items.Add(Struttura.prodotto[dim-1] + " €" + Struttura.prezzo[dim-1]);
+
+        }
+        public void modifica(string nome, string valore, int posizione)
+        {
+            Struttura.prodotto[posizione] = nome;
+            Struttura.prezzo[posizione] = valore;
+        }
+        public int ricerca(string nome)
+        {
+            int pos;
+            for(int i = 0; i < dim; i++)
+            {
+                if(Struttura.prodotto[i] == nome)
+                {
+                    pos = i;
+                    return pos;
+                }
+            }
+            pos = -1;
+            return pos;
         }
     }
 }
