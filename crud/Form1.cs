@@ -23,30 +23,56 @@ namespace crud
         {
             InitializeComponent();
             Struttura.prodotto = new string[100];
+            Struttura.prezzo = new string[100];
             dim = 0;
         }
+        #region Form
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+        #endregion
 
+        #region label
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
+        private void label2_Click_1(object sender, EventArgs e)
+        {
 
+        }
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion 
+
+        #region button
         private void button1_Click(object sender, EventArgs e)
         {
-            aggiunta(TextB1.Text, TextB2.Text);
+            aggiunta(textBox1.Text, textBox2.Text);
             stampa();
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            int posizione = ricerca(TextB3.Text);
+            int posizione = ricerca(textBox3.Text);
             if (posizione != -1)
             {
-                modifica(TextB4.Text, textB5.Text, posizione);
-                stampa();
                 MessageBox.Show("il prodotto è stato trovato");
             }
             else
@@ -55,38 +81,74 @@ namespace crud
             }
 
         }
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            int posizione = ricerca(textBox3.Text);
+            modifica(textBox4.Text, textBox5.Text, posizione);
+            stampa();
+        }
+        #endregion
 
+        #region TextBox
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }
-        private void label6_Click(object sender, EventArgs e)
+        private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
+        #endregion
+
+        #region ListView
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
 
         //funzioni di servizio
+        #region aggiunta
         public void aggiunta(string nome, string valore)
         {
             Struttura.prodotto[dim] = nome;
             Struttura.prezzo[dim] = valore;
             dim++;
         }
+        #endregion
+
+        #region stampa
         public void stampa()
         {
-            this.listView1.Items.Add(Struttura.prodotto[dim-1] + " €" + Struttura.prezzo[dim-1]);
-
+            listView1.Items.Clear();
+            for(int i = 0; i < dim; i++)
+            {
+                listView1.Items.Add(Struttura.prodotto[i] + " €" + Struttura.prezzo[i]);
+            }
         }
+        #endregion
+
+        #region modifica
         public void modifica(string nome, string valore, int posizione)
         {
             Struttura.prodotto[posizione] = nome;
             Struttura.prezzo[posizione] = valore;
         }
+        #endregion
+
+        #region ricerca
         public int ricerca(string nome)
         {
             int pos;
@@ -101,5 +163,6 @@ namespace crud
             pos = -1;
             return pos;
         }
+        #endregion
     }
 }

@@ -32,19 +32,19 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.TextB1 = new System.Windows.Forms.TextBox();
-            this.TextB3 = new System.Windows.Forms.TextBox();
-            this.TextB4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TextB2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textB5 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -56,6 +56,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -75,46 +76,17 @@
             this.label2.Size = new System.Drawing.Size(165, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "inseire un prodotto da aggiungere";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 107);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(156, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "inserire un prodotto da ricercare";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 144);
+            this.label5.Location = new System.Drawing.Point(12, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Inserire il nuovo prodotto";
-            // 
-            // TextB1
-            // 
-            this.TextB1.Location = new System.Drawing.Point(273, 17);
-            this.TextB1.Name = "TextB1";
-            this.TextB1.Size = new System.Drawing.Size(152, 20);
-            this.TextB1.TabIndex = 6;
-            this.TextB1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // TextB3
-            // 
-            this.TextB3.Location = new System.Drawing.Point(273, 100);
-            this.TextB3.Name = "TextB3";
-            this.TextB3.Size = new System.Drawing.Size(152, 20);
-            this.TextB3.TabIndex = 7;
-            // 
-            // TextB4
-            // 
-            this.TextB4.Location = new System.Drawing.Point(273, 137);
-            this.TextB4.Name = "TextB4";
-            this.TextB4.Size = new System.Drawing.Size(152, 20);
-            this.TextB4.TabIndex = 8;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label3
             // 
@@ -124,14 +96,7 @@
             this.label3.Size = new System.Drawing.Size(140, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "inserire il prezzo del prodotto";
-            // 
-            // TextB2
-            // 
-            this.TextB2.Location = new System.Drawing.Point(273, 55);
-            this.TextB2.Name = "TextB2";
-            this.TextB2.Size = new System.Drawing.Size(152, 20);
-            this.TextB2.TabIndex = 10;
-            this.TextB2.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.label3.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // button1
             // 
@@ -161,13 +126,7 @@
             this.button3.TabIndex = 13;
             this.button3.Text = "modifica del prodotto";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textB5
-            // 
-            this.textB5.Location = new System.Drawing.Point(273, 176);
-            this.textB5.Name = "textB5";
-            this.textB5.Size = new System.Drawing.Size(152, 20);
-            this.textB5.TabIndex = 14;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // contextMenuStrip1
             // 
@@ -177,28 +136,78 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 183);
+            this.label6.Location = new System.Drawing.Point(12, 220);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Inserire il nuovo prezzo";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(156, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "inserire un prodotto da ricercare";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(293, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(123, 20);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(293, 55);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(123, 20);
+            this.textBox2.TabIndex = 18;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(293, 119);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(123, 20);
+            this.textBox3.TabIndex = 19;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(293, 169);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(122, 20);
+            this.textBox4.TabIndex = 20;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(293, 213);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(123, 20);
+            this.textBox5.TabIndex = 21;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textB5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.TextB2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.TextB4);
-            this.Controls.Add(this.TextB3);
-            this.Controls.Add(this.TextB1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -217,19 +226,19 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox TextB1;
-        private System.Windows.Forms.TextBox TextB3;
-        private System.Windows.Forms.TextBox TextB4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TextB2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textB5;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }
 
