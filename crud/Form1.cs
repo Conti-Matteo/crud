@@ -13,17 +13,18 @@ namespace crud
     public partial class Form1 : Form
     {
         public int dim;
-        public struct struttura
+        Prodotto[] prodotti;
+        public struct Prodotto
         {
-            public string[] prodotto;
-            public string[] prezzo;
+            public string prodotto;
+            public float prezzo;
         }
-        public static struttura Struttura = new struttura();
+
+        public static Prodotto Struttura = new Prodotto();
         public Form1()
         {
             InitializeComponent();
-            Struttura.prodotto = new string[100];
-            Struttura.prezzo = new string[100];
+            prodotti = new Prodotto[100];
             dim = 0;
         }
         #region Form
@@ -60,6 +61,10 @@ namespace crud
         {
 
         }
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion 
 
         #region button
@@ -87,6 +92,10 @@ namespace crud
             modifica(textBox4.Text, textBox5.Text, posizione);
             stampa();
         }
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region TextBox
@@ -107,6 +116,10 @@ namespace crud
 
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -164,5 +177,6 @@ namespace crud
             return pos;
         }
         #endregion
+
     }
 }
