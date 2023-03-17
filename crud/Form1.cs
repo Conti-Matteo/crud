@@ -13,18 +13,17 @@ namespace crud
     public partial class Form1 : Form
     {
         public int dim;
-        Prodotto[] prodotti;
         public struct Prodotto
         {
-            public string prodotto;
+            public string nome;
             public float prezzo;
         }
 
-        public static Prodotto Struttura = new Prodotto();
+        public static Prodotto[] Struttura;
         public Form1()
         {
             InitializeComponent();
-            prodotti = new Prodotto[100];
+            Struttura = new Prodotto[100];
             dim = 0;
         }
         #region Form
@@ -70,7 +69,7 @@ namespace crud
         #region button
         private void button1_Click(object sender, EventArgs e)
         {
-            aggiunta(textBox1.Text, textBox2.Text);
+            aggiunta(textBox1.Text, float.Parse(textBox2.Text));
             stampa();
         }
         private void button2_Click(object sender, EventArgs e)
@@ -89,7 +88,7 @@ namespace crud
         private void button3_Click_1(object sender, EventArgs e)
         {
             int posizione = ricerca(textBox3.Text);
-            modifica(textBox4.Text, textBox5.Text, posizione);
+            modifica(textBox4.Text, float.Parse(textBox5.Text), posizione);
             stampa();
         }
         private void button4_Click(object sender, EventArgs e)
@@ -134,10 +133,10 @@ namespace crud
 
         //funzioni di servizio
         #region aggiunta
-        public void aggiunta(string nome, string valore)
+        public void aggiunta(string prod, float valore)
         {
-            Struttura.prodotto[dim] = nome;
-            Struttura.prezzo[dim] = valore;
+            Struttura[dim].nome = prod;
+            Struttura[dim].prezzo = valore;
             dim++;
         }
         #endregion
@@ -148,26 +147,26 @@ namespace crud
             listView1.Items.Clear();
             for(int i = 0; i < dim; i++)
             {
-                listView1.Items.Add(Struttura.prodotto[i] + " €" + Struttura.prezzo[i]);
+                listView1.Items.Add(Struttura[i].nome + " €" + Struttura[i].prezzo);
             }
         }
         #endregion
 
         #region modifica
-        public void modifica(string nome, string valore, int posizione)
+        public void modifica(string prod, float valore, int posizione)
         {
-            Struttura.prodotto[posizione] = nome;
-            Struttura.prezzo[posizione] = valore;
+            Struttura[posizione].nome = prod;
+            Struttura[posizione].prezzo = valore;
         }
         #endregion
 
         #region ricerca
-        public int ricerca(string nome)
+        public int ricerca(string prod)
         {
             int pos;
             for(int i = 0; i < dim; i++)
             {
-                if(Struttura.prodotto[i] == nome)
+                if(Struttura[i].nome == prod)
                 {
                     pos = i;
                     return pos;
@@ -177,6 +176,7 @@ namespace crud
             return pos;
         }
         #endregion
+
 
     }
 }
