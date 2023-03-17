@@ -92,6 +92,8 @@ namespace crud
             modifica(textBox4.Text, float.Parse(textBox5.Text), posizione);
             stampa();
             textBox3.Text = textBox4.Text;
+            textBox4.Text = "";
+            textBox5.Text = "";
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -99,7 +101,7 @@ namespace crud
 
             if (posizione != -1)
             {
-                Cancella(posizione);
+                cancella(posizione);
 
                 stampa();
 
@@ -109,7 +111,12 @@ namespace crud
             {
                 MessageBox.Show("L'elemento non esisteva, non è stato perciò possibile cancellarlo");
             }
+            textBox3.Text = "";
             textBox6.Text = "";
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            pTot();
         }
         #endregion
 
@@ -155,10 +162,10 @@ namespace crud
             Struttura[dim].prezzo = valore;
             dim++;
         }
-        #endregion
+            #endregion
 
         #region stampa
-        public void stampa()
+            public void stampa()
         {
             listView1.Items.Clear();
             for(int i = 0; i < dim; i++)
@@ -193,8 +200,8 @@ namespace crud
         }
         #endregion
 
-        #region Cancella
-        public void Cancella(int posizione)
+        #region cancella
+        public void cancella(int posizione)
         {
             for (int i = posizione; i < dim; i++)
             {
@@ -204,5 +211,18 @@ namespace crud
             dim--;
         }
         #endregion
+
+        #region pTot
+        public void pTot()
+        {
+            float p = 0;
+            for (int i = 0; i < dim; i++)
+            {
+                p += Struttura[i].prezzo;
+            }
+            listView1.Items.Add("spesa totale: €" + p);
+        }
+        #endregion
+
     }
 }
