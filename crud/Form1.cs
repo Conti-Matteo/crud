@@ -71,6 +71,8 @@ namespace crud
         {
             aggiunta(textBox1.Text, float.Parse(textBox2.Text));
             stampa();
+            textBox1.Text = "";
+            textBox2.Text = "";
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -83,17 +85,31 @@ namespace crud
             {
                 MessageBox.Show("il prodotto non è stato trovato");
             }
-
         }
         private void button3_Click_1(object sender, EventArgs e)
         {
             int posizione = ricerca(textBox3.Text);
             modifica(textBox4.Text, float.Parse(textBox5.Text), posizione);
             stampa();
+            textBox3.Text = textBox4.Text;
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            int posizione = ricerca(textBox3.Text);
 
+            if (posizione != -1)
+            {
+                Cancella(posizione);
+
+                stampa();
+
+                MessageBox.Show("Elemento cancellato correttamente");
+            }
+            else
+            {
+                MessageBox.Show("L'elemento non esisteva, non è stato perciò possibile cancellarlo");
+            }
+            textBox6.Text = "";
         }
         #endregion
 
@@ -177,6 +193,16 @@ namespace crud
         }
         #endregion
 
-
+        #region Cancella
+        public void Cancella(int posizione)
+        {
+            for (int i = posizione; i < dim; i++)
+            {
+                Struttura[i].nome = Struttura[i + 1].nome;
+                Struttura[i].prezzo = Struttura[i + 1].prezzo;
+            }
+            dim--;
+        }
+        #endregion
     }
 }
