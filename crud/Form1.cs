@@ -64,6 +64,10 @@ namespace crud
         {
 
         }
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion 
 
         #region button
@@ -97,7 +101,7 @@ namespace crud
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            int posizione = ricerca(textBox3.Text);
+            int posizione = ricerca(textBox6.Text);
 
             if (posizione != -1)
             {
@@ -117,6 +121,18 @@ namespace crud
         private void button5_Click(object sender, EventArgs e)
         {
             pTot();
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            sconto(int.Parse(textBox7.Text));
+            stampa();
+            textBox7.Text = "";
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            sconto(- int.Parse(textBox7.Text));
+            stampa();
+            textBox7.Text = "";
         }
         #endregion
 
@@ -142,6 +158,10 @@ namespace crud
 
         }
         private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox7_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -221,6 +241,17 @@ namespace crud
                 p += Struttura[i].prezzo;
             }
             listView1.Items.Add("spesa totale: €" + p);
+        }
+        #endregion
+
+        #region sconto
+        public void sconto(int sconto)
+        {
+            for (int i = 0; i < dim; i++)
+            {
+                float p = Struttura[i].prezzo + (Struttura[i].prezzo / 100 * sconto);
+                Struttura[i].prezzo = p;
+            }
         }
         #endregion
 
