@@ -53,6 +53,8 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -277,11 +279,33 @@
             this.label8.Text = "inserire la percentuale di sconto";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(451, 54);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(85, 46);
+            this.button8.TabIndex = 32;
+            this.button8.Text = "Prodotto più costoso";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(451, 106);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(85, 46);
+            this.button9.TabIndex = 33;
+            this.button9.Text = "Prodotto meno costoso";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.textBox7);
@@ -339,6 +363,8 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 

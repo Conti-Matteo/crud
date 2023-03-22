@@ -130,9 +130,17 @@ namespace crud
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            sconto(- int.Parse(textBox7.Text));
+            sconto(-int.Parse(textBox7.Text));
             stampa();
             textBox7.Text = "";
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            costoMag();
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            costoMin();
         }
         #endregion
 
@@ -182,13 +190,13 @@ namespace crud
             Struttura[dim].prezzo = valore;
             dim++;
         }
-            #endregion
+        #endregion
 
         #region stampa
-            public void stampa()
+        public void stampa()
         {
             listView1.Items.Clear();
-            for(int i = 0; i < dim; i++)
+            for (int i = 0; i < dim; i++)
             {
                 listView1.Items.Add(Struttura[i].nome + " €" + Struttura[i].prezzo);
             }
@@ -207,9 +215,9 @@ namespace crud
         public int ricerca(string prod)
         {
             int pos;
-            for(int i = 0; i < dim; i++)
+            for (int i = 0; i < dim; i++)
             {
-                if(Struttura[i].nome == prod)
+                if (Struttura[i].nome == prod)
                 {
                     pos = i;
                     return pos;
@@ -255,5 +263,38 @@ namespace crud
         }
         #endregion
 
+        #region costoMag
+        public void costoMag()
+        {
+            string prodMag = Struttura[0].nome;
+            float prodMag2 = Struttura[0].prezzo;
+            for (int i = 0; i < dim; i++)
+            {
+                if (prodMag2 < Struttura[i].prezzo)
+                {
+                    prodMag = Struttura[i].nome;
+                    prodMag2 = Struttura[i].prezzo;
+                }
+            }
+            MessageBox.Show("Il prodotto più costoso è: " + prodMag);
+        }
+        #endregion
+
+        #region costoMin
+        public void costoMin()
+        {
+            string prodMin = Struttura[0].nome;
+            float prodMin2 = Struttura[0].prezzo;
+            for (int i = 0; i < dim; i++)
+            {
+                if (prodMin2 > Struttura[i].prezzo)
+                {
+                    prodMin = Struttura[i].nome;
+                    prodMin2 = Struttura[i].prezzo;
+                }
+            }
+            MessageBox.Show("Il prodotto meno costoso è: " + prodMin);
+            #endregion
+        }
     }
 }
