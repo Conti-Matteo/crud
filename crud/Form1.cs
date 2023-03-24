@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace crud
 {
     public partial class Form1 : Form
     {
         public int dim;
+        string filename;
         public struct Prodotto
         {
             public string nome;
@@ -23,6 +25,7 @@ namespace crud
         public Form1()
         {
             InitializeComponent();
+            filename = @"Carrello.csv";
             Struttura = new Prodotto[100];
             dim = 0;
         }
@@ -141,6 +144,15 @@ namespace crud
         private void button9_Click(object sender, EventArgs e)
         {
             costoMin();
+        }
+        private void button10_Click(object sender, EventArgs e)
+        {
+            creaFile();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            leggiFile();
         }
         #endregion
 
@@ -294,7 +306,37 @@ namespace crud
                 }
             }
             MessageBox.Show("Il prodotto meno costoso è: " + prodMin);
-            #endregion
         }
+        #endregion
+
+        #region creaFile
+        public void creaFile()
+        {
+            using (StreamWriter sw = new StreamWriter(filename, append: false))
+            {
+                for (int i = 0; i < dim; i++)
+                {
+                    sw.WriteLine(Struttura[i].nome + " €" + Struttura[i].prezzo);
+                }
+            }
+        }
+        #endregion
+
+        #region leggiFile
+        public void leggiFile()
+        {
+            listView1.Items.Clear();
+
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                string s;
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    listView1.Items.Add(s);
+                }
+            }
+        }
+        #endregion
     }
 }
